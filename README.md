@@ -1,5 +1,16 @@
 # Test
 
+## Notes
+
+Rule was represented as a string for pretty printing, but should probably just be a number from the start.
+
+Ran out of time to even think about optimization.
+
+Could use some more tests.
+
+Normally I would use a virtual env, but also ran out of time.
+
+
 ## Local setup
 
 ### Python
