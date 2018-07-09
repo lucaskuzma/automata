@@ -22,9 +22,9 @@ def stringify_state(state):
 
 
 def iterate_state(state, rule):
-    """Iterates a binary array of width with the rule given"""
+    """Iterates an array with the rule given"""
     width = len(state)
-    out_state = [False for i in range(width)]
+    out_state = [0 for _ in range(width)]
     for i, cell in enumerate(state):
         # determine cell pattern
         l_neighbor = state[(i-1) % width]
@@ -32,7 +32,7 @@ def iterate_state(state, rule):
         pattern = (l_neighbor << 2) + (cell << 1) + r_neighbor
         
         # determine new state
-        new_cell = rule[7 - pattern] == '1'
+        new_cell = 1 if rule[7 - pattern] == '1' else 0
         out_state[i] = new_cell
     
     return out_state
@@ -50,12 +50,8 @@ def main(args):
     rule = prepare_rule(args.rule)
     
     # generate initial state
-    n = randint(0, 2 ** WIDTH)
-    state = [False for i in range(WIDTH)]
-    for i in range(WIDTH):
-        state[(WIDTH-1) - i] = True if n & 1 else False
-        n = n >> 1
-
+    state = [randint(0, 1) for _ in range(WIDTH)]
+    
     print(stringify_state(state))
     
     # iterate state and print
