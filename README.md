@@ -8,8 +8,9 @@ Ran out of time to even think about optimization.
 
 Could use some more tests.
 
-Normally I would use a virtual env, but also ran out of time.
+Normally I would use a virtual env, but ran out of time.
 
+Should check input is even integers, etc., but ran out of time.
 
 ## Local setup
 
