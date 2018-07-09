@@ -20,12 +20,29 @@ def print_state(state):
     print("".join('x' if x else '.' for x in state))
 
 
+def iterate_state(state, rule):
+    out_state = [False for i in range(WIDTH)]
+    for i, cell in enumerate(state):
+        # determine cell pattern
+        l_neighbor = state[(i-1) % WIDTH]
+        r_neighbor = state[(i+1) % WIDTH]
+        pattern = (l_neighbor << 2) + (cell << 1) + r_neighbor
+        
+        # determine new state
+        new_cell = rule[7 - pattern] == '1'
+        out_state[i] = new_cell
+    
+    return out_state
+
+
 def main(args):
     args = parse(args)
     
+    # get rule and make it into a binary appearing string
     rule = str(bin(args.rule))[2:].zfill(8)
     print('rule: {}'.format(rule))
     
+    # generate initial state
     n = randint(0, 2 ** WIDTH)
     state = [False for i in range(WIDTH)]
     for i in range(WIDTH):
@@ -33,6 +50,12 @@ def main(args):
         n = n >> 1
     
     print_state(state)
+    
+    # iterate state and print
+    iterations = args.iterations
+    for i in range(iterations):
+        state = iterate_state(state, rule)
+        print_state(state)
 
 
 if __name__ == '__main__':
