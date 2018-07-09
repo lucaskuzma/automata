@@ -16,7 +16,7 @@ class TestStringMethods(unittest.TestCase):
     def test_iterate_state(self):
         state = [True, False, True]
         rule = prepare_rule(110)
-        new_state = iterate_state(state, rule, 3)
+        new_state = iterate_state(state, rule)
         self.assertEqual(new_state, [True, True, True])
 
 

@@ -21,8 +21,9 @@ def stringify_state(state):
     return "".join('x' if x else '.' for x in state)
 
 
-def iterate_state(state, rule, width):
+def iterate_state(state, rule):
     """Iterates a binary array of width with the rule given"""
+    width = len(state)
     out_state = [False for i in range(width)]
     for i, cell in enumerate(state):
         # determine cell pattern
@@ -60,7 +61,7 @@ def main(args):
     # iterate state and print
     iterations = args.iterations
     for i in range(iterations):
-        state = iterate_state(state, rule, WIDTH)
+        state = iterate_state(state, rule)
         print(stringify_state(state))
 
 
